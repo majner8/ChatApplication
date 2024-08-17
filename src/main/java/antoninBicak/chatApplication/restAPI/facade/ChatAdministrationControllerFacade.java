@@ -1,5 +1,6 @@
 package antoninBicak.chatApplication.restAPI.facade;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import antoninBicak.chatApplication.dto.chat.AddUserToChatDTO;
@@ -8,16 +9,21 @@ import antoninBicak.chatApplication.dto.chat.ChatPermissionDTO;
 import antoninBicak.chatApplication.dto.chat.CreateChatDTO;
 import antoninBicak.chatApplication.dto.chat.LeaveUserFromChatDTO;
 import antoninBicak.chatApplication.dto.chat.UserChatNameDTO;
+import antoninBicak.chatApplication.relationalDatabase.services.ChatDatabaseService;
 import antoninBicak.chatApplication.security.ChatPermission;
 import antoninBicak.chatApplication.security.accessValidator.CheckChatAccess;
 
 public class ChatAdministrationControllerFacade {
 	
+	@Autowired
+	private ChatDatabaseService databaseService;
+	
 	@CheckChatAccess(role=ChatPermission.Admin)
 	public void changeChatName(String chatID, ChatNameDTO chatName) {
-
-		return null;
+		this.databaseService.changeChatName(chatID, chatName.getChatName());
+		
 	}
+	
 	@CheckChatAccess(role=ChatPermission.Admin,allowItself=true)
 	public ResponseEntity<?> changeUserChatNickName(String chatID, long userID, UserChatNameDTO userNickName) {
 		// TODO Auto-generated method stub
@@ -30,7 +36,6 @@ public class ChatAdministrationControllerFacade {
 		return null;
 	}
 	@CheckChatAccess(role=ChatPermission.Admin)
-
 	public ResponseEntity<?> kickUserFromChat(String chatID, LeaveUserFromChatDTO userID, long kickBy) {
 		// TODO Auto-generated method stub
 		return null;

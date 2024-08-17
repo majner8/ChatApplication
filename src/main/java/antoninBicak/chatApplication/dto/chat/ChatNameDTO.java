@@ -11,5 +11,6 @@ import lombok.Getter;
 @Builder
 public class ChatNameDTO {
 
+	private final String chatName;
 	
 }

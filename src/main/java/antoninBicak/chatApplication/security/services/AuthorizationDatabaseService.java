@@ -14,7 +14,7 @@ public interface AuthorizationDatabaseService {
 	public Optional<AuthorizationResultDTO> login(AuthorizationDTO dto);
 	public Optional<AuthorizationResultDTO> register(AuthorizationDTO dto);
 	public void changePassword(PasswordDTO password);
-	public void finishRegistration(FinishRegistrationDTO dto);
+	public void finishRegistration(FinishRegistrationDTO dto); 
 	
 	@Getter
 	@AllArgsConstructor()

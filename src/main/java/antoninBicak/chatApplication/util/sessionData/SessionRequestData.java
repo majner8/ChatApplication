@@ -1,7 +1,11 @@
 package antoninBicak.chatApplication.util.sessionData;
 
-public interface SessionRequestData {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-	public long getUserID();
-	public long getVersion();
+@AllArgsConstructor
+@Getter
+public  class SessionRequestData {
+	private final long userID;
+	private final long authorizationVersion;
 }

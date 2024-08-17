@@ -80,7 +80,8 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 				long userID;
 				long version;
 				try {
-					UserEntity ent=this.repository.persist(entity.get());
+					UserEntity ent=this.repository
+							.persist(entity.get());
 					userID=ent.getUserID();
 					version=ent.getVersion();
 				} catch (EntityExistsException e) {
