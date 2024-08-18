@@ -26,8 +26,7 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 	private UserEntityJpaRepository repository;
 	@Autowired
 	private HashPassword hashPassword;
-	@Autowired
-	private SessionRequestData sessionData;
+
 	public Optional<AuthorizationResultDTO> login(AuthorizationDTO dto) {
 		Optional<AuthorizationProjection> projection=
 				switch(dto.getType()) {
@@ -93,9 +92,9 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 
 	
 	@Override
-	public void changePassword(PasswordDTO password) {
-		long version=this.sessionData.getVersion();
-		long userID=this.sessionData.getUserID();
+	public void changePassword(PasswordDTO password,SessionRequestData sessionData) {
+		long version=sessionData.getAuthorizationVersion();
+		long userID=sessionData.getUserID();
 		String hashPassword=this.hashPassword.hashPassword(password.getPassword());
 		try {
 			this.repository.updatePassword(hashPassword, userID, version);
@@ -105,7 +104,7 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 	}
 
 	@Override
-	public void finishRegistration(FinishRegistrationDTO dto) {
+	public void finishRegistration(FinishRegistrationDTO dto,SessionRequestData sessionData) {
 		try {
 			this.repository.updateUserRegistrationData(dto);
 		} catch (OptimisticLockException e) {

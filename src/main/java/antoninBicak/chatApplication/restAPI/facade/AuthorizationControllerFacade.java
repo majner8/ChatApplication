@@ -12,6 +12,7 @@ import antoninBicak.chatApplication.dto.authorization.TokenDTO;
 import antoninBicak.chatApplication.security.jwtToken.jwtTokenGenerator;
 import antoninBicak.chatApplication.security.services.AuthorizationDatabaseService;
 import antoninBicak.chatApplication.security.services.AuthorizationDatabaseService.AuthorizationResultDTO;
+import antoninBicak.chatApplication.util.sessionData.SessionRequestData;
 
 public class AuthorizationControllerFacade {
 	@Autowired
@@ -34,13 +35,13 @@ public class AuthorizationControllerFacade {
 		return Optional.of(token);
 	}
 
-	public void changePassword(PasswordDTO passwordDTO) {
-		this.databaseService.changePassword(passwordDTO);
+	public void changePassword(PasswordDTO passwordDTO,SessionRequestData sessionData) {
+		this.databaseService.changePassword(passwordDTO, sessionData);
 		this.logoutAll();
 	}
 
-	public void finishRegistration(FinishRegistrationDTO dto) {
-		this.databaseService.finishRegistration(dto);
+	public void finishRegistration(FinishRegistrationDTO dto,SessionRequestData sessionData) {
+		this.databaseService.finishRegistration(dto, sessionData);
 	}
 
 	public ResponseEntity<?> logout() {
