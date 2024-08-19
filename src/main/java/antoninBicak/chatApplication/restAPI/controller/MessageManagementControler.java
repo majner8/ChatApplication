@@ -11,16 +11,16 @@ import antoninBicak.chatApplication.dto.message.MessageDTO;
 @RestController
 public class MessageManagementControler   {
 
-	
+
 	public ResponseEntity<MessageDTO> getMessage(String chatID, int order) {
 		return null;
 	}
 
-	
+
 	public ResponseEntity<List<MessageDTO>> getMessages(String chatID, int startOffset, int endOffSet) {
 		return null;
 	}
 
-	
+
 
 }

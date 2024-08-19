@@ -3,7 +3,7 @@ package antoninBicak.chatApplication.relationalDatabase.repository;
 import javax.persistence.EntityExistsException;
 
 public  interface ChatApplicationCrudeRepository<ENT,ID>{
-	
+
 
 	/**Method check if entity exist and then call persist method.
 	 *  @return true if save method was successful

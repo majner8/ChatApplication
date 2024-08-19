@@ -18,7 +18,7 @@ import antoninBicak.chatApplication.security.accessValidator.CheckChatAccess;
 import antoninBicak.chatApplication.util.sessionData.SessionRequestData;
 
 public class ChatAdministrationControllerFacade {
-	
+
 	@Autowired
 	private ChatDatabaseService databaseService;
 	@Autowired
@@ -31,7 +31,7 @@ public class ChatAdministrationControllerFacade {
 		MessageDTO mes=this.messageConvertor.createChangeChatNameMessage(chatID, chatName.getChatName());
 		this.messagePublisher.sendMessage(mes, requestData);
 	}
-	
+
 	@CheckChatAccess(role=ChatPermission.Admin,allowItself=true)
 	public ResponseEntity<?> changeUserChatNickName(String chatID, long userID, UserChatNameDTO userNickName) {
 		// TODO Auto-generated method stub

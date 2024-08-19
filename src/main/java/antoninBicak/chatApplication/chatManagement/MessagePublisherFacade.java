@@ -20,6 +20,6 @@ public class MessagePublisherFacade {
 		message=message.setMessageOrder(messageOrder);
 		this.mongoDatabaseService.saveMessage(message);
 		this.rabbitMQPublisher.pushMessage(message, sessionData.getUserID());
-		
+
 	}
 }

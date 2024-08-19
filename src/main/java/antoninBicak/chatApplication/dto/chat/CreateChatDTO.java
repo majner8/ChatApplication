@@ -2,8 +2,6 @@ package antoninBicak.chatApplication.dto.chat;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +15,7 @@ public class CreateChatDTO {
 	private List<Long> member;
 	private ChatNameDTO chatName;
 
-	
-	
-	
+
+
+
 }

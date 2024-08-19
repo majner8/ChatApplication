@@ -21,15 +21,19 @@ public class AuthorizationControllerFacade {
 	private AuthorizationDatabaseService databaseService;
 	public Optional<TokenDTO> login(AuthorizationDTO authorization) {
 		Optional<AuthorizationResultDTO>result=this.databaseService.login(authorization);
-		if(result.isEmpty()) return Optional.empty();
+		if(result.isEmpty()) {
+			return Optional.empty();
+		}
 		AuthorizationResultDTO r=result.get();
 		TokenDTO token=this.jwtGenerator.generateToken(r.getUserID(), r.getVersion());
 		return Optional.of(token);
 	}
 
-	public Optional<TokenDTO> register(AuthorizationDTO authorization) {	
+	public Optional<TokenDTO> register(AuthorizationDTO authorization) {
 		Optional<AuthorizationResultDTO>result=this.databaseService.register(authorization);
-		if(result.isEmpty()) return Optional.empty();
+		if(result.isEmpty()) {
+			return Optional.empty();
+		}
 		AuthorizationResultDTO r=result.get();
 		TokenDTO token=this.jwtGenerator.generateToken(r.getUserID(), r.getVersion());
 		return Optional.of(token);

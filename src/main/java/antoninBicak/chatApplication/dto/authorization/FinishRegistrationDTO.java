@@ -23,7 +23,7 @@ public class FinishRegistrationDTO {
 
 	@NotNull(message="born field cannot be null")
 	private final LocalDate born;
-	
+
 
 
 }

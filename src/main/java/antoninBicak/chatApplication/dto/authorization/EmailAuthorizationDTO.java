@@ -3,7 +3,6 @@ package antoninBicak.chatApplication.dto.authorization;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -20,9 +19,9 @@ public class EmailAuthorizationDTO extends AuthorizationDTO {
 		this.email = email;
 	}
 
-	
-	
 
 
-	
+
+
+
 }

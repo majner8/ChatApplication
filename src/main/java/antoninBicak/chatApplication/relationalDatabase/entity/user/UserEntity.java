@@ -24,7 +24,7 @@ public class UserEntity {
 	private long userID;
 	@Version
 	private long version;
-	
+
 	@Column()
 	private String email;
 	@Column()
@@ -33,7 +33,7 @@ public class UserEntity {
 	private String phoneNumber;
 	@Column()
 	private String password;
-	
+
 	@Column()
 	private String serName;
 	@Column()
@@ -41,11 +41,11 @@ public class UserEntity {
 	@Column()
 	private String nickName;
 	@Column()
-	private LocalDate birthDay;	
+	private LocalDate birthDay;
 
 	@Column()
 	private LocalDateTime lastChange;
-	
-	
+
+
 
 }

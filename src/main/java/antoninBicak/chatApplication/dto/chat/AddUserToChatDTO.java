@@ -14,7 +14,7 @@ public class AddUserToChatDTO {
 	@NotNull
 	private final String chatID;
 	private final long addedBy;
-	
-	
-	
+
+
+
 }

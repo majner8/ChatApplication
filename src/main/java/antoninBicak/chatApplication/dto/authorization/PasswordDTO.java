@@ -13,7 +13,7 @@ public class PasswordDTO {
 	@Pattern(regexp = authorizationRegex.passwordRegexPattern,message="Invalid password field")
 	private final String password;
 
-	
+
 
 
 }

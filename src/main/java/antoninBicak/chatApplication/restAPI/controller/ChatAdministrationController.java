@@ -8,10 +8,9 @@ import antoninBicak.chatApplication.dto.chat.ChatPermissionDTO;
 import antoninBicak.chatApplication.dto.chat.CreateChatDTO;
 import antoninBicak.chatApplication.dto.chat.LeaveUserFromChatDTO;
 import antoninBicak.chatApplication.dto.chat.UserChatNameDTO;
-import antoninBicak.chatApplication.security.accessValidator.CheckChatAccess;
 public class ChatAdministrationController {
-	
-	
+
+
 	public ResponseEntity<?> changeChatName(String chatID, ChatNameDTO chatName) {
 		// TODO Auto-generated method stub
 		return null;
@@ -22,7 +21,7 @@ public class ChatAdministrationController {
 		return null;
 	}
 
-	
+
 	public ResponseEntity<?> addUserToChat(String chatID, AddUserToChatDTO userID) {
 		// TODO Auto-generated method stub
 		return null;
@@ -38,7 +37,7 @@ public class ChatAdministrationController {
 		return null;
 	}
 
-	
+
 	public ResponseEntity<?> addPermission(String chatID, long userID, ChatPermissionDTO permission) {
 		// TODO Auto-generated method stub
 		return null;

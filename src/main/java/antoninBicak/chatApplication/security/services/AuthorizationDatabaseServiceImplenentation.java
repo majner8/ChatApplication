@@ -5,10 +5,9 @@ import java.util.Optional;
 import javax.persistence.EntityExistsException;
 import javax.persistence.OptimisticLockException;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.stereotype.Service;
 
 import antoninBicak.chatApplication.dto.authorization.AuthorizationDTO;
 import antoninBicak.chatApplication.dto.authorization.EmailAuthorizationDTO;
@@ -27,6 +26,7 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 	@Autowired
 	private HashPassword hashPassword;
 
+	@Override
 	public Optional<AuthorizationResultDTO> login(AuthorizationDTO dto) {
 		Optional<AuthorizationProjection> projection=
 				switch(dto.getType()) {
@@ -43,20 +43,25 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 
 						);
 				};
-				if(projection.isEmpty()) return Optional.empty();
+				if(projection.isEmpty()) {
+					return Optional.empty();
+				}
 				AuthorizationProjection	 pr=projection.get();
-				if(!this.hashPassword.comparePassword(dto.getPassword().getPassword(), pr.getPassword())) return Optional.empty();	
+				if(!this.hashPassword.comparePassword(dto.getPassword().getPassword(), pr.getPassword())) {
+					return Optional.empty();
+				}
 				return Optional.of(AuthorizationResultDTO.of(pr.getUserID(), pr.getVersion()));
-			
+
 	}
-	
+
+	@Override
 	public Optional<AuthorizationResultDTO> register(AuthorizationDTO dto) {
 		Optional<UserEntity> entity=
 				switch(dto.getType()) {
 				case EmailAuthorization->{
 					EmailAuthorizationDTO emailAut=(EmailAuthorizationDTO) dto;
-					if(this.repository.existsByEmail(emailAut.getEmail()))yield Optional.empty();
-					
+					if(this.repository.existsByEmail(emailAut.getEmail())){yield Optional.empty();}
+
 					UserEntity ent=new UserEntity();
 					ent.setEmail(emailAut.getEmail());
 					ent.setPassword(this.hashPassword.hashPassword(emailAut.getPassword().getPassword()));
@@ -64,8 +69,8 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 				}
 				case PhoneAuthorization->{
 					PhoneAuthorizationDTO phoneAut=(PhoneAuthorizationDTO) dto;
-					if(this.repository.existsByPhonePreflixAndPhoneNumber(phoneAut.getCountryPreflix(),phoneAut.getNumber())) yield Optional.empty();
-					
+					if(this.repository.existsByPhonePreflixAndPhoneNumber(phoneAut.getCountryPreflix(),phoneAut.getNumber())){yield Optional.empty();}
+
 					UserEntity ent=new UserEntity();
 					ent.setPhonePreflix(phoneAut.getCountryPreflix());
 					ent.setPhoneNumber(phoneAut.getNumber());
@@ -90,7 +95,7 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 
 	}
 
-	
+
 	@Override
 	public void changePassword(PasswordDTO password,SessionRequestData sessionData) {
 		long version=sessionData.getAuthorizationVersion();
@@ -111,5 +116,5 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
             throw new CredentialsExpiredException("Your session has expired because your credentials are no longer valid. Please log in again.", e);
 		}
 	}
-	
+
 }

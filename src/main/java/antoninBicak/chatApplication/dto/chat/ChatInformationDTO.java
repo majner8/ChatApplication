@@ -3,8 +3,6 @@ package antoninBicak.chatApplication.dto.chat;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,5 +17,5 @@ public class ChatInformationDTO {
 	private ChatNameDTO chatName;
 	private String chatID;
 	private List<UserChatNameDTO> userChatNames;
-	
+
 }

@@ -11,7 +11,7 @@ public class PhoneAuthorizationDTO extends AuthorizationDTO {
 	private final String countryPreflix;
     @Pattern(regexp = "^\\d{1,15}$", message = "number  must be 1-15 long and contain only digits")
 	private final String number;
-	
+
     @Builder
     public PhoneAuthorizationDTO(AuthorizationDTOType type, @NotNull(message = "password field cannot be null") PasswordDTO password,
 			@Pattern(regexp = "^\\d{1,3}$", message = "Country prefix must be 1-3 long and contain only digits") String countryPreflix,
@@ -21,5 +21,5 @@ public class PhoneAuthorizationDTO extends AuthorizationDTO {
 		this.number = number;
 	}
 
-    
+
 }
