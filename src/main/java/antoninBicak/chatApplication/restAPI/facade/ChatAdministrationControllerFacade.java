@@ -28,45 +28,55 @@ public class ChatAdministrationControllerFacade {
 	@CheckChatAccess(role=ChatPermission.Admin)
 	public void changeChatName(String chatID, ChatNameDTO chatName,SessionRequestData requestData) {
 		this.databaseService.changeChatName(chatID, chatName.getChatName());
-		MessageDTO mes=this.messageConvertor.createChangeChatNameMessage(chatID, chatName.getChatName());
+		MessageDTO mes=this.messageConvertor.createChangeChatNameMessage(requestData,chatID, chatName.getChatName());
 		this.messagePublisher.sendMessage(mes, requestData);
 	}
 
 	@CheckChatAccess(role=ChatPermission.Admin,allowItself=true)
-	public ResponseEntity<?> changeUserChatNickName(String chatID, long userID, UserChatNameDTO userNickName) {
-		// TODO Auto-generated method stub
-		return null;
+	public void changeUserChatNickName(String chatID, long affectedUserID, UserChatNameDTO userNickName,SessionRequestData requestData) {
+		this.databaseService.changeUserChatNickName(chatID, affectedUserID,userNickName.getNickName().getChatName());
+		MessageDTO mes=this.messageConvertor.createChangeUserChatNickNameMessage(requestData,chatID, userNickName.getNickName().getChatName(),affectedUserID,userNickName.getChangeBy());
+		this.messagePublisher.sendMessage(mes, requestData);
 	}
 
 	@CheckChatAccess(role=ChatPermission.Admin)
-	public ResponseEntity<?> addUserToChat(String chatID, AddUserToChatDTO userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void addUserToChat(String chatID, AddUserToChatDTO userID,SessionRequestData requestData) {
+		this.databaseService.addUserToChat(chatID, userID.getUserID());
+		MessageDTO mes=this.messageConvertor.createUserWasAddedToChatMessage(requestData,chatID, userID.getUserID(), userID.getAddedBy());
+		this.messagePublisher.sendMessage(mes, requestData);
+		}
 	@CheckChatAccess(role=ChatPermission.Admin)
-	public ResponseEntity<?> kickUserFromChat(String chatID, LeaveUserFromChatDTO userID, long kickBy) {
-		// TODO Auto-generated method stub
-		return null;
+	public void kickUserFromChat(String chatID, LeaveUserFromChatDTO userID, long kickBy,SessionRequestData requestData) {
+		this.databaseService.addUserToChat(chatID, userID.getUserID());
+		MessageDTO mes=this.messageConvertor.createUserWasKickedMessage(requestData,chatID, userID.getUserID(), kickBy);
+		this.messagePublisher.sendMessage(mes, requestData);
 	}
 	@CheckChatAccess()
-	public ResponseEntity<?> leaveUserFromChat(String chatID, LeaveUserFromChatDTO userID) {
-		// TODO Auto-generated method stub
-		return null;
+	public void leaveUserFromChat(String chatID, LeaveUserFromChatDTO userID,SessionRequestData requestData) {
+		this.databaseService.addUserToChat(chatID, userID.getUserID());
+		MessageDTO mes=this.messageConvertor.createUserLeftChatMessage(requestData,chatID, userID.getUserID());
+		this.messagePublisher.sendMessage(mes, requestData);
 	}
 
 	@CheckChatAccess(role=ChatPermission.Owner)
-	public ResponseEntity<?> addPermission(String chatID, long userID, ChatPermissionDTO permission) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addPermission(String chatID, long userID, ChatPermissionDTO permission,SessionRequestData requestData) {
+		this.databaseService.addUserPermission(chatID, userID, permission.getPermission());
+		MessageDTO mes=this.messageConvertor.createUserGotPermissionMessage(requestData,chatID, permission.getPermission(), userID);
+				this.messagePublisher.sendMessage(mes, requestData);
 	}
 	@CheckChatAccess(role=ChatPermission.Owner)
-	public ResponseEntity<?> removePermission(String chatID, long userID, ChatPermissionDTO permission) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removePermission(String chatID, long userID, ChatPermissionDTO permission,SessionRequestData requestData) {
+		this.databaseService.addUserPermission(chatID, userID, permission.getPermission());
+		MessageDTO mes=this.messageConvertor.createUserGotPermissionMessage(requestData,chatID, permission.getPermission(), userID);
+				this.messagePublisher.sendMessage(mes, requestData);
 	}
 
-	public ResponseEntity<?> createChat(CreateChatDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void createChat(CreateChatDTO dto,SessionRequestData requestData) {
+		String chatID =
+		this.databaseService.createChat(dto);
+		
+		MessageDTO mes=this.messageConvertor.createChat(requestData,chatID, dto.getChatID(), requestData.getUserID());
+		this.messagePublisher.sendMessage(mes, requestData);
+		
 	}
 }

@@ -9,7 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import antoninBicak.chatApplication.relationalDatabase.entity.user.UserEntity;
-
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+@Getter
+@Setter
+@ToString
 public class ChatInformationEntity {
 	@Id
 	private String chatID;

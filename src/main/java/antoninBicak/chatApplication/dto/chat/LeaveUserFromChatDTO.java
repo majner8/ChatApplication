@@ -9,4 +9,5 @@ import lombok.Getter;
 @Builder
 public class LeaveUserFromChatDTO {
 
+	private long userID;
 }

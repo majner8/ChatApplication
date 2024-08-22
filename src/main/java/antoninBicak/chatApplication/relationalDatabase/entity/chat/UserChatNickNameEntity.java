@@ -9,6 +9,7 @@ import javax.persistence.MapsId;
 
 import antoninBicak.chatApplication.relationalDatabase.entity.user.UserEntity;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +47,7 @@ public class UserChatNickNameEntity {
 	@Embeddable
 	@ToString
 	@EqualsAndHashCode
+	@AllArgsConstructor(staticName = "of")
 	public static  class CompositeKey implements Serializable{
 
 		private static final long serialVersionUID = 1L;
