@@ -9,15 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.stereotype.Service;
 
-import antoninBicak.chatApplication.dto.authorization.AuthorizationDTO;
-import antoninBicak.chatApplication.dto.authorization.EmailAuthorizationDTO;
-import antoninBicak.chatApplication.dto.authorization.FinishRegistrationDTO;
-import antoninBicak.chatApplication.dto.authorization.PasswordDTO;
-import antoninBicak.chatApplication.dto.authorization.PhoneAuthorizationDTO;
+import antoninBicak.chatApplication.dto.AuthorizationDTO;
+import antoninBicak.chatApplication.dto.EmailAuthorizationDTO;
+import antoninBicak.chatApplication.dto.FinishRegistrationDTO;
+import antoninBicak.chatApplication.dto.PasswordDTO;
+import antoninBicak.chatApplication.dto.PhoneAuthorizationDTO;
 import antoninBicak.chatApplication.relationalDatabase.entity.user.UserEntity;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserEntityJpaRepository;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserEntityJpaRepository.AuthorizationProjection;
-import antoninBicak.chatApplication.util.sessionData.SessionRequestData;
+import antoninBicak.chatApplication.util.SessionRequestData;
 @Service
 public class AuthorizationDatabaseServiceImplenentation implements AuthorizationDatabaseService {
 

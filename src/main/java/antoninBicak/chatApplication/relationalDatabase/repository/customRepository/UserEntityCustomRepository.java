@@ -2,7 +2,7 @@ package antoninBicak.chatApplication.relationalDatabase.repository.customReposit
 
 import javax.persistence.OptimisticLockException;
 
-import antoninBicak.chatApplication.dto.authorization.FinishRegistrationDTO;
+import antoninBicak.chatApplication.dto.FinishRegistrationDTO;
 
 public interface UserEntityCustomRepository {
 

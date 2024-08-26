@@ -2,10 +2,10 @@ package antoninBicak.chatApplication.security.services;
 
 import java.util.Optional;
 
-import antoninBicak.chatApplication.dto.authorization.AuthorizationDTO;
-import antoninBicak.chatApplication.dto.authorization.FinishRegistrationDTO;
-import antoninBicak.chatApplication.dto.authorization.PasswordDTO;
-import antoninBicak.chatApplication.util.sessionData.SessionRequestData;
+import antoninBicak.chatApplication.dto.AuthorizationDTO;
+import antoninBicak.chatApplication.dto.FinishRegistrationDTO;
+import antoninBicak.chatApplication.dto.PasswordDTO;
+import antoninBicak.chatApplication.util.SessionRequestData;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
 import antoninBicak.chatApplication.security.ChatPermission;
-import antoninBicak.chatApplication.util.sessionData.SessionRequestData;
+import antoninBicak.chatApplication.util.SessionRequestData;
 
 @Component
 class MessageConvertorImplementation implements MessageConvertor {

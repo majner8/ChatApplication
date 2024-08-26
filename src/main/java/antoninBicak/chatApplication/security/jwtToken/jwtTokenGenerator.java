@@ -1,6 +1,6 @@
 package antoninBicak.chatApplication.security.jwtToken;
 
-import antoninBicak.chatApplication.dto.authorization.TokenDTO;
+import antoninBicak.chatApplication.dto.TokenDTO;
 
 public interface jwtTokenGenerator {
 

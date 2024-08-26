@@ -1,7 +1,7 @@
 package antoninBicak.chatApplication.relationalDatabase.services;
 
-import antoninBicak.chatApplication.dto.chat.ChatInformationDTO;
-import antoninBicak.chatApplication.dto.chat.CreateChatDTO;
+import antoninBicak.chatApplication.dto.ChatInformationDTO;
+import antoninBicak.chatApplication.dto.CreateChatDTO;
 import antoninBicak.chatApplication.security.ChatPermission;
 
 public interface ChatDatabaseService {

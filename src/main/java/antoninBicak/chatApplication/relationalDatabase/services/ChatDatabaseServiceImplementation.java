@@ -2,8 +2,8 @@ package antoninBicak.chatApplication.relationalDatabase.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import antoninBicak.chatApplication.dto.chat.ChatInformationDTO;
-import antoninBicak.chatApplication.dto.chat.CreateChatDTO;
+import antoninBicak.chatApplication.dto.ChatInformationDTO;
+import antoninBicak.chatApplication.dto.CreateChatDTO;
 import antoninBicak.chatApplication.relationalDatabase.entity.chat.UserChatNickNameEntity.CompositeKey;
 import antoninBicak.chatApplication.relationalDatabase.repository.ChatInformationEntityRepository;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserChatNickNameRepository;

@@ -3,7 +3,7 @@ package antoninBicak.chatApplication.dto.message;
 import java.util.List;
 
 import antoninBicak.chatApplication.security.ChatPermission;
-import antoninBicak.chatApplication.util.sessionData.SessionRequestData;
+import antoninBicak.chatApplication.util.SessionRequestData;
 
 public interface MessageConvertor {
 

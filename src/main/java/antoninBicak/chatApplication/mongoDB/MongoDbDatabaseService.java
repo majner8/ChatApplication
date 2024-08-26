@@ -11,4 +11,7 @@ public interface MongoDbDatabaseService {
 	public MessageDTO loadMessage(String chatID, long order);
 	
 	public List<MessageDTO>loadMessages(String chatID,long offSetStart, long offSetEnd);
+	
+	public long getMessageOrder(String chatID);
+
 }
