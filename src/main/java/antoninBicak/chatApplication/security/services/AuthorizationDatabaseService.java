@@ -15,6 +15,7 @@ public interface AuthorizationDatabaseService {
 	public void changePassword(PasswordDTO password,SessionRequestData sessionData);
 	public void finishRegistration(FinishRegistrationDTO dto,SessionRequestData sessionData);
 
+	
 	@Getter
 	@AllArgsConstructor()
 	public static class AuthorizationResultDTO{

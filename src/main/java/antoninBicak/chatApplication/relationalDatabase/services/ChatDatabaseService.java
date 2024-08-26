@@ -15,8 +15,8 @@ public interface ChatDatabaseService {
 	public void removeUserFromChat(String chatID,long userID);
 	
 	public void addUserPermission(String chatID, long affectedUserID,ChatPermission permission);
-	/**return generated chatID */
-	public String createChat(CreateChatDTO dto);
+	/**return created dto, with fill chatID*/
+	public ChatInformationDTO createChat(CreateChatDTO dto);
 	
 	public ChatInformationDTO getChatInformation(String chatID);
 }

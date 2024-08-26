@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import antoninBicak.chatApplication.dto.AddUserToChatDTO;
+import antoninBicak.chatApplication.dto.ChatInformationDTO;
 import antoninBicak.chatApplication.dto.ChatNameDTO;
 import antoninBicak.chatApplication.dto.ChatPermissionDTO;
 import antoninBicak.chatApplication.dto.CreateChatDTO;
@@ -71,12 +72,19 @@ public class ChatAdministrationControllerFacade {
 				this.messagePublisher.sendMessage(mes, requestData);
 	}
 
-	public void createChat(CreateChatDTO dto,SessionRequestData requestData) {
-		String chatID =
+	public ChatInformationDTO createChat(CreateChatDTO dto,SessionRequestData requestData) {
+		ChatInformationDTO chatInformation =
 		this.databaseService.createChat(dto);
 		
-		MessageDTO mes=this.messageConvertor.createChat(requestData,chatID, dto.getChatID(), requestData.getUserID());
+		MessageDTO mes=this.messageConvertor
+				.createChat(requestData, chatInformation.getChatID(), chatInformation.getChatName().getChatName(), requestData.getUserID());
 		this.messagePublisher.sendMessage(mes, requestData);
-		
+		return chatInformation;
+	}
+	
+	@CheckChatAccess()
+	public ChatInformationDTO getChatInformation(SessionRequestData requestData,String chatID) {
+		ChatInformationDTO dto=this.databaseService.getChatInformation(chatID);
+		return dto;
 	}
 }
