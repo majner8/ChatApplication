@@ -9,10 +9,10 @@ import antoninBicak.chatApplication.dto.AuthorizationDTO;
 import antoninBicak.chatApplication.dto.FinishRegistrationDTO;
 import antoninBicak.chatApplication.dto.PasswordDTO;
 import antoninBicak.chatApplication.dto.TokenDTO;
+import antoninBicak.chatApplication.relationalDatabase.services.AuthorizationDatabaseService;
+import antoninBicak.chatApplication.relationalDatabase.services.AuthorizationDatabaseService.AuthorizationResultDTO;
 import antoninBicak.chatApplication.security.jwtTokenService;
 import antoninBicak.chatApplication.security.jwtToken.jwtTokenGenerator;
-import antoninBicak.chatApplication.security.services.AuthorizationDatabaseService;
-import antoninBicak.chatApplication.security.services.AuthorizationDatabaseService.AuthorizationResultDTO;
 import antoninBicak.chatApplication.util.SessionRequestData;
 
 public class AuthorizationControllerFacade {

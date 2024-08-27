@@ -1,13 +1,13 @@
-package antoninBicak.chatApplication.relationalDatabase.entity.chat;
+package antoninBicak.chatApplication.relationalDatabase.entity;
 
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
-import antoninBicak.chatApplication.relationalDatabase.entity.user.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,6 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Entity
 public class UserChatNickNameEntity {
 
 

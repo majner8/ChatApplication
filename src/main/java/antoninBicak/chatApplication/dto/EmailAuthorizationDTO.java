@@ -14,7 +14,7 @@ public class EmailAuthorizationDTO extends AuthorizationDTO {
 
 	@Builder
 	public EmailAuthorizationDTO(AuthorizationDTOType type, @NotNull(message = "password field cannot be null") PasswordDTO password,
-			@Email(message = "Email is not valid") @NotNull(message = "Email cannot be null") String email) {
+	@Email(message = "Email is not valid") @NotNull(message = "Email cannot be null") String email) {
 		super(type, password);
 		this.email = email;
 	}

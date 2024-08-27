@@ -1,5 +1,16 @@
 package antoninBicak.chatApplication.dto;
 
-public class userSearchProfileDTO extends userProfileDTO {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class userSearchProfileDTO {
+	private   String nickName;
+	private  String firstName;
+	private   String lastName;
+	private  long userID;
+	
 }

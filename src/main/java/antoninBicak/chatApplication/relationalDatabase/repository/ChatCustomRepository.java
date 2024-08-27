@@ -1,4 +1,4 @@
-package antoninBicak.chatApplication.relationalDatabase.repository.customRepository;
+package antoninBicak.chatApplication.relationalDatabase.repository;
 
 public interface ChatCustomRepository {
 

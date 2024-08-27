@@ -3,7 +3,7 @@ package antoninBicak.chatApplication.security.services;
 import org.springframework.stereotype.Component;
 
 @Component
-class HashPassword {
+public class HashPassword {
 
 	public String hashPassword(String rawPassword) {
 		return null;

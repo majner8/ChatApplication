@@ -1,4 +1,4 @@
-package antoninBicak.chatApplication.security.services;
+package antoninBicak.chatApplication.relationalDatabase.services;
 
 import java.util.Optional;
 
@@ -14,9 +14,10 @@ import antoninBicak.chatApplication.dto.EmailAuthorizationDTO;
 import antoninBicak.chatApplication.dto.FinishRegistrationDTO;
 import antoninBicak.chatApplication.dto.PasswordDTO;
 import antoninBicak.chatApplication.dto.PhoneAuthorizationDTO;
-import antoninBicak.chatApplication.relationalDatabase.entity.user.UserEntity;
+import antoninBicak.chatApplication.relationalDatabase.entity.UserEntity;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserEntityJpaRepository;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserEntityJpaRepository.AuthorizationProjection;
+import antoninBicak.chatApplication.security.services.HashPassword;
 import antoninBicak.chatApplication.util.SessionRequestData;
 @Service
 public class AuthorizationDatabaseServiceImplenentation implements AuthorizationDatabaseService {

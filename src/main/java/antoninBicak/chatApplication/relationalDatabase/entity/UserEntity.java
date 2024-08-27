@@ -1,4 +1,4 @@
-package antoninBicak.chatApplication.relationalDatabase.entity.user;
+package antoninBicak.chatApplication.relationalDatabase.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,7 +35,7 @@ public class UserEntity {
 	private String password;
 
 	@Column()
-	private String serName;
+	private String firstName;
 	@Column()
 	private String lastName;
 	@Column()

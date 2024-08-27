@@ -1,4 +1,4 @@
-package antoninBicak.chatApplication.relationalDatabase.entity.chat;
+package antoninBicak.chatApplication.relationalDatabase.entity;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import antoninBicak.chatApplication.relationalDatabase.entity.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

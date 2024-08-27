@@ -1,4 +1,4 @@
-package antoninBicak.chatApplication.security.services;
+package antoninBicak.chatApplication.relationalDatabase.services;
 
 import java.util.Optional;
 
