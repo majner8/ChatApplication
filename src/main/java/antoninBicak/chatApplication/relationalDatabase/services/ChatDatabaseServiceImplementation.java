@@ -1,14 +1,21 @@
 package antoninBicak.chatApplication.relationalDatabase.services;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import antoninBicak.chatApplication.dto.ChatInformationDTO;
 import antoninBicak.chatApplication.dto.CreateChatDTO;
+import antoninBicak.chatApplication.relationalDatabase.entity.ChatInformationEntity;
 import antoninBicak.chatApplication.relationalDatabase.entity.UserChatNickNameEntity;
 import antoninBicak.chatApplication.relationalDatabase.entity.UserChatNickNameEntity.CompositeKey;
 import antoninBicak.chatApplication.relationalDatabase.repository.ChatInformationEntityRepository;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserChatNickNameRepository;
 import antoninBicak.chatApplication.security.ChatPermission;
+import antoninBicak.chatApplication.util.IdGenerator;
+import antoninBicak.chatApplication.util.mapper.ChatEntityDTOMapper;
 
 public class ChatDatabaseServiceImplementation implements ChatDatabaseService {
 
@@ -18,6 +25,10 @@ public class ChatDatabaseServiceImplementation implements ChatDatabaseService {
 	private UserChatNickNameRepository userChatRepo;
 	@Autowired
 	private ChatInformationEntityRepository chatInformationRepo;
+	@Autowired
+	private ChatEntityDTOMapper chatMapper;
+	@Autowired
+	private IdGenerator idGenerator;
 	@Override
 	public void changeChatName(String chatID, String chatName) {
 		this.repo.updateChatName(chatID, chatName);
@@ -44,22 +55,43 @@ public class ChatDatabaseServiceImplementation implements ChatDatabaseService {
 
 	@Override
 	public void addUserPermission(String chatID, long affectedUserID, ChatPermission permission) {
-		// TODO Auto-generated method stub
-		
+		this.userChatRepo.updateUserPermission(permission, CompositeKey.of(affectedUserID, chatID));
 	}
 
 	
 
 	@Override
 	public ChatInformationDTO getChatInformation(String chatID) {
-		// TODO Auto-generated method stub
-		return null;
+		ChatInformationEntity entity=this.chatInformationRepo.getById(chatID);
+		return this.chatMapper.toChatInformationDTO(entity);
 	}
 
 	@Override
-	public ChatInformationDTO createChat(CreateChatDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public String createChat(CreateChatDTO dto) {
+		ChatInformationEntity entity=this.chatMapper.toChatInformationEntity(dto);
+		if(dto.isGroupChat()) entity.setChatID(this.idGenerator.generateChatID());
+		//duplicate primary key have to be catch and thrown to custom exception
+		this.chatInformationRepo.persist(entity);
+		
+		List<UserChatNickNameEntity> nickName=
+		dto.getChatMemberID().stream()
+		.map(v->{
+			UserChatNickNameEntity e= new UserChatNickNameEntity()
+				.setPrimaryKey(
+						CompositeKey.of(v, dto.getChatID()));
+			if(!dto.isGroupChat()) {
+				e.setPermission(ChatPermission.UserToUserChat);
+				return e;
+			}
+			if(dto.getCreatedBy()==v) e.setPermission(ChatPermission.Owner);
+			else e.setPermission(ChatPermission.Member);
+		
+		return e;}
+		).toList();
+		this.userChatRepo.saveAll(nickName);
+		entity.setChatMemberID(nickName);
+		return entity.getChatID();
 	}
 
 }

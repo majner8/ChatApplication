@@ -9,13 +9,13 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@Builder
+@Builder(setterPrefix="set")
 public class ChatInformationDTO {
 
-	private LocalDateTime created;
-	private long createdBy;
-	private ChatNameDTO chatName;
-	private String chatID;
-	private List<UserChatNameDTO> userChatNames;
+	private final LocalDateTime created;
+	private final long createdBy;
+	private final ChatNameDTO chatName;
+	private final String chatID;
+	private final List<UserChatNameDTO> userChatNames;
 
 }

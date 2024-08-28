@@ -4,4 +4,5 @@ public enum ChatPermission {
 	Owner,
 	Admin,
 	Member
+	,UserToUserChat
 }

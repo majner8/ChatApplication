@@ -11,15 +11,15 @@ import antoninBicak.chatApplication.dto.userProfileDTO;
 import antoninBicak.chatApplication.dto.userSearchProfileDTO;
 import antoninBicak.chatApplication.relationalDatabase.entity.UserEntity;
 import antoninBicak.chatApplication.relationalDatabase.repository.UserEntityJpaRepository;
-import antoninBicak.chatApplication.util.EntityDTOMapper;
 import antoninBicak.chatApplication.util.SessionRequestData;
+import antoninBicak.chatApplication.util.mapper.UserEntityMapper;
 
 public class UserDatabaseServiceImplementation implements UserDatabaseService {
 
 	@Autowired
 	private UserEntityJpaRepository userEntity;
 	@Autowired
-	private EntityDTOMapper mapper;
+	private UserEntityMapper mapper;
 	@Override
 	public userProfileDTO updateUserProfile(SessionRequestData sessionData,userProfileDTO dto) {
 		

@@ -10,9 +10,8 @@ import lombok.Getter;
 public class UserChatNameDTO {
 
 
-	private long userID;
-	private String chatID;
-	private ChatNameDTO nickName;
+	private final long userID;
+	private final String chatID;
+	private final ChatNameDTO nickName;
 
-	private Long changeBy;
 }

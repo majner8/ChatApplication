@@ -7,17 +7,21 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Version;
 
+import antoninBicak.chatApplication.security.ChatPermission;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 @Getter
 @Setter
 @ToString
 @Entity
+@Accessors(chain = true)
 public class UserChatNickNameEntity {
 
 
@@ -26,11 +30,15 @@ public class UserChatNickNameEntity {
 	@EmbeddedId
 	private CompositeKey primaryKey;
 	private String nickName;
-
+	
+	private ChatPermission permission;
+	
 	@ManyToOne()
 	@MapsId("userID")
     @Getter(AccessLevel.NONE)
 	private UserEntity userID;
+	
+	
 	public String getChatID() {
 		if(this.primaryKey==null) {
 			throw new NullPointerException("Cannot retrive chatID, because field primaryKey is null");

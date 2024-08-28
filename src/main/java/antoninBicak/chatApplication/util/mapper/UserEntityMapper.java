@@ -1,4 +1,4 @@
-package antoninBicak.chatApplication.util;
+package antoninBicak.chatApplication.util.mapper;
 
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -9,9 +9,9 @@ import antoninBicak.chatApplication.dto.userProfileDTO;
 import antoninBicak.chatApplication.relationalDatabase.entity.UserEntity;
 
 @Mapper
-public interface EntityDTOMapper {
+public interface UserEntityMapper {
 	    
 	    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-	    void updateUserFromDto(userProfileDTO dto, @MappingTarget UserEntity entity);
+	   public void updateUserFromDto(userProfileDTO dto, @MappingTarget UserEntity entity);
 	
 }
