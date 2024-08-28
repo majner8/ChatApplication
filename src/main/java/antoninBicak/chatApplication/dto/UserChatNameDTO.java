@@ -13,5 +13,6 @@ public class UserChatNameDTO {
 	private final long userID;
 	private final String chatID;
 	private final ChatNameDTO nickName;
+	private long changeBy;
 
 }

@@ -1,8 +1,10 @@
 package antoninBicak.chatApplication.relationalDatabase.services;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.OptimisticLockException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,17 +104,33 @@ public class AuthorizationDatabaseServiceImplenentation implements Authorization
 		long version=sessionData.getAuthorizationVersion();
 		long userID=sessionData.getUserID();
 		String hashPassword=this.hashPassword.hashPassword(password.getPassword());
+		UserEntity ent = this.repository.findById(userID).
+				orElseThrow(()->{
+					throw new EntityNotFoundException(String.format("User with id: %s was found. Check database integrity!", userID));
+				});
+		ent.setPassword(hashPassword)
+		.setVersion(version);
 		try {
-			this.repository.updatePassword(hashPassword, userID, version);
+			this.repository.save(ent);
 		} catch (OptimisticLockException e) {
             throw new CredentialsExpiredException("Your session has expired because your credentials are no longer valid. Please log in again.", e);
 		}
 	}
-
 	@Override
 	public void finishRegistration(FinishRegistrationDTO dto,SessionRequestData sessionData) {
+		long userID=sessionData.getUserID();
+		long version=sessionData.getAuthorizationVersion();
+		UserEntity ent = this.repository.findById(userID).
+				orElseThrow(()->{
+					throw new EntityNotFoundException(String.format("User with id: %s was found. Check database integrity!", userID));
+				});
+		ent.setFirstName(dto.getFirstName())
+		.setLastName(dto.getLastName())
+		.setBirthDay(dto.getBorn())
+		.setLastChange(LocalDateTime.now())
+		.setVersion(version);
 		try {
-			this.repository.updateUserRegistrationData(dto);
+			this.repository.save(ent);
 		} catch (OptimisticLockException e) {
             throw new CredentialsExpiredException("Your session has expired because your credentials are no longer valid. Please log in again.", e);
 		}

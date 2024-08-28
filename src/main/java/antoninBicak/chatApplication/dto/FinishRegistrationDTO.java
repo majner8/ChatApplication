@@ -15,7 +15,7 @@ import lombok.Getter;
 public class FinishRegistrationDTO {
 	@NotNull(message = "serName field cannot be null")
     @Pattern(regexp = "^[\\p{L} ]+$", message = "serName value can only contain alphabetic characters and spaces")
-    private final String serName;
+    private final String firstName;
 
     @NotNull(message = "lastName field cannot be null")
     @Pattern(regexp = "^[\\p{L} ]+$", message = "lastName field can only contain alphabetic characters and spaces")

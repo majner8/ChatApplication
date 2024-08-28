@@ -72,14 +72,14 @@ public class ChatAdministrationControllerFacade {
 				this.messagePublisher.sendMessage(mes, requestData);
 	}
 
-	public ChatInformationDTO createChat(CreateChatDTO dto,SessionRequestData requestData) {
-		ChatInformationDTO chatInformation =
+	public String createChat(CreateChatDTO dto,SessionRequestData requestData) {
+		String chatID =
 		this.databaseService.createChat(dto);
 		
 		MessageDTO mes=this.messageConvertor
-				.createChat(requestData, chatInformation.getChatID(), chatInformation.getChatName().getChatName(), requestData.getUserID());
+				.createChat(requestData, chatID, dto.getChatName().getChatName(), requestData.getUserID());
 		this.messagePublisher.sendMessage(mes, requestData);
-		return chatInformation;
+		return chatID;
 	}
 	
 	@CheckChatAccess()

@@ -8,4 +8,5 @@ public interface UserEntityCustomRepository {
 
 	public void updatePassword(String hashPassword,long userID,long version) throws OptimisticLockException;
 	public void updateUserRegistrationData(FinishRegistrationDTO dto)throws OptimisticLockException;
+
 }

@@ -25,7 +25,6 @@ public class UserFacadeController {
 
 
 	public List<userSearchProfileDTO> searchUser(SessionRequestData sessionData,String firstName, String lastName, boolean similar) {
-	sxc
 		List<userSearchProfileDTO> result=this.userDatabaseService.findUser(firstName, lastName, similar);
 		return result;
 	}
