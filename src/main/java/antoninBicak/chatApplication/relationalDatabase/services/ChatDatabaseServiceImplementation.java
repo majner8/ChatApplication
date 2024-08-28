@@ -37,7 +37,7 @@ public class ChatDatabaseServiceImplementation implements ChatDatabaseService {
 	
 	@Override
 	public void changeUserChatNickName(String chatID, long affectedUserID, String chatName) {
-		this.userChatRepo.updateUserChatNickName(chatName, CompositeKey.of(affectedUserID, chatID));
+		this.userChatRepo.updateUserChatNickName(chatName, affectedUserID, chatID);
 		
 	}
 
@@ -55,7 +55,7 @@ public class ChatDatabaseServiceImplementation implements ChatDatabaseService {
 
 	@Override
 	public void addUserPermission(String chatID, long affectedUserID, ChatPermission permission) {
-		this.userChatRepo.updateUserPermission(permission, CompositeKey.of(affectedUserID, chatID));
+		this.userChatRepo.updateUserPermission(permission, affectedUserID, chatID);
 	}
 
 	

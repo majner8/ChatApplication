@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Version;
@@ -30,7 +32,7 @@ public class UserChatNickNameEntity {
 	@EmbeddedId
 	private CompositeKey primaryKey;
 	private String nickName;
-	
+    @Enumerated(EnumType.STRING) 
 	private ChatPermission permission;
 	
 	@ManyToOne()
