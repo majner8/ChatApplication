@@ -34,18 +34,22 @@ public class UserDatabaseServiceImplementation implements UserDatabaseService {
 
 	@Override
 	public List<userSearchProfileDTO> findUser(String firstName, String lastName, boolean similar) {
-		
+		List<UserEntity>ent=this.findUserEntity(firstName, lastName, similar);		
+       return ent.stream().map(this.mapper::toUserSearchProfileDTO).toList();
+
+	}
+
+	private List<UserEntity> findUserEntity(String firstName,String lastName,boolean similar){
 		if(!similar) {
 			if(firstName==null) return this.userEntity.findByLastName(lastName);
 			if(lastName==null) return this.userEntity.findByFirstName(firstName);
 			return this.userEntity.findByFirstNameAndLastName(firstName, lastName);
 		}
-			if(firstName==null) return this.userEntity.findSimilarByLastName(lastName);
-			if(lastName==null) return this.userEntity.findSimilarByFirstName(firstName);
-			return this.userEntity.findSimilarByFirstNameAndLastName(firstName, lastName);
+			if(firstName==null) return this.userEntity.findByLastNameContaining(lastName);
+			if(lastName==null) return this.userEntity.findByFirstNameContaining(firstName);
+			return this.userEntity.findByFirstNameContainingAndLastNameContaining(firstName, lastName);
 		
-		}
-
+	}
 	@Override
 	public userSearchProfileDTO getUserProfile(long userID) {
 		return this.userEntity.getById(userID);

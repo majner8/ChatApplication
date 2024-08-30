@@ -25,14 +25,19 @@ ChatApplicationCrudeRepository<UserEntity,Long>
 	public boolean existsByEmail(String email);
 	public boolean existsByPhonePreflixAndPhoneNumber(String phonePreflix,String phoneNumber);
 
-	public List<userSearchProfileDTO> findByFirstName(String firstName);
-	public List<userSearchProfileDTO> findByLastName(String firstName);
-	public List<userSearchProfileDTO> findByFirstNameAndLastName(String firstName,String lastName);
+	public List<UserEntity> findByFirstName(String firstName);
+	public List<UserEntity> findByLastName(String firstName);
+	public List<UserEntity> findByFirstNameAndLastName(String firstName,String lastName);
 	
-	public List<userSearchProfileDTO> findSimilarByFirstName(String firstName);
-	public List<userSearchProfileDTO> findSimilarByLastName(String firstName);
-	public List<userSearchProfileDTO> findSimilarByFirstNameAndLastName(String firstName,String lastName);
+	public List<UserEntity> findByFirstNameContaining(String firstName);
+	public List<UserEntity> findByLastNameContaining(String firstName);
+	public List<UserEntity> findByFirstNameContainingAndLastNameContaining(String firstName,String lastName);
 
+	/*
+	public List<UserEntity> findSimilarByFirstName(String firstName);
+	public List<UserEntity> findSimilarByLastName(String firstName);
+	public List<UserEntity> findSimilarByFirstNameAndLastName(String firstName,String lastName);
+	*/
 	public userSearchProfileDTO getById(long ID);
 	/*
 	public void updatePassword(String hashPassword,long userID,long version) throws OptimisticLockException;
